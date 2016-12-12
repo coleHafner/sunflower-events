@@ -1,0 +1,80 @@
+@font-face {
+	font-family: 'Watermelon Script';
+	src: url('/fonts/watermelon-script/watermelon-script.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#header {
+	margin-top: 60px;
+
+	a {
+		float: left;
+		color: #000;
+
+		h1 {
+			font-family: 'Watermelon Script';
+			font-size: 36px;
+			text-align: left;
+			margin-top: 0;
+		}
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+#footer {
+	margin-top: 30px;
+	border-top: 1px solid #eeeeee;
+	padding-top: 30px;
+	color: #777777;
+}
+
+.gallery-image img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+	/*background-image: url('/images/bg-sunflowers2.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;*/
+	background-color: #fff;
+}
+
+.inner {
+	background-color: rgba(255, 255, 255, .71);
+	min-height: 200px;
+	padding: 10px;
+}
+
+.nav-list {
+	float: right;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		font-family: 'Arial';
+		font-size: 18px;
+		display: inline-block;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-top: 5px;
+
+		a {
+			color: #000;
+		}
+	}
+}
+
+.nav-top {
+	position: fixed;
+	top: 0;
+	height: 50px;
+	left: 0;
+	right: 0;
+	background-color: #ffee00;
+}
