@@ -34,18 +34,24 @@ html
 
 	//- HTML BODY
 	body
-		.container
-			.inner
-				//- HEADER
-				#header
-					a(href='/') 
+		//- HEADER
+		#header
+			.container
+				.inner
+					a(href='/')
 						h1 Sunflower Events
 
 					ul.nav-list
 						each link in navLinks
 							li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-				//- BODY
-				#body
+						//- BODY
+
+		#body
+			slip-n-slider(:style="{backgroundImage: 'url(' + images[current] + ')' }")
+				a.next.glyphicon-arrow-right(@click="next") &nbsp;
+				a.prev.glyphicon-arrow-left(@click="prev") &nbsp;
+			.container
+				.inner
 
 					//- NOTE:
 					//- There is no .container wrapping class around body blocks to allow more flexibility in design.
@@ -62,11 +68,12 @@ html
 					block content
 
 
-			//- FOOTER
-			#footer
+		//- FOOTER
+		#footer
 
-				//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-				p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
+			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
+			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
+
 		.nav-top
 
 		//- JAVASCRIPT
@@ -80,6 +87,9 @@ html
 		//- them specifically here, instead of bootstrap-3.3.5.min.js
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
 
+		//vue JS
+		script(src='/js/vue/dist/vue.js')
+
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
 		if user && user.canAccessKeystone
@@ -89,3 +99,52 @@ html
 
 		//- Include template-specific javascript files by extending the js block
 		block js
+
+		script.
+			new Vue({
+				el: 'slip-n-slider',
+				data: {
+					images: [
+						'http://media.npr.org/assets/img/2016/08/05/180749660_03d05e1a95_b-21e2b03e8a44b23394e4192030a9a0710c58bcf7-s900-c85.jpg',
+						'https://s-media-cache-ak0.pinimg.com/564x/55/78/76/557876217406c6fd97e7bf43d7eb4f71.jpg',
+						'http://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/chocolate-avocado-cake.jpg?itok=E2eWE_Dx'
+					],
+					current: 0,
+					timer: null
+
+				},
+				created: function() {
+					this.play();
+
+				},
+				methods: {
+					play: function() {
+						if (this.timer !== null) return;
+						this.timer = setInterval(this.next, 3000);
+					},
+					pause: function() {
+						clearTimeout(this.timer);
+						this.timer = null;
+
+					},
+					next: function() {
+						if (this.current === (this.images.length - 1)) {
+							this.current = 0;
+							return;
+						}
+
+						this.current++;
+
+
+					},
+					prev: function() {
+						if (this.current === 0) {
+							this.current = (this.images.length - 1);
+							return;
+						}
+
+						this.current--;
+					}
+				}
+			});
+

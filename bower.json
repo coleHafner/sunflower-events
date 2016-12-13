@@ -1,0 +1,27 @@
+{
+  "name": "sunflower-events",
+  "homepage": "https://github.com/coleHafner/sunflower-events",
+  "authors": [
+    "Cole Hafner (Personal MacBook) <colehafner@gmail.com>"
+  ],
+  "description": "Event planning website for my beautiful wife.",
+  "main": "",
+  "keywords": [
+    "event-planning",
+    "sunflower",
+    "pdx"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.1.5",
+    "bootstrap": "^3.3.7"
+  }
+}
