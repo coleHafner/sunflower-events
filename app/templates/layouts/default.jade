@@ -41,15 +41,26 @@ html
 					a(href='/')
 						h1 Sunflower Events
 
-					ul.nav-list
+					ul.nav-list.hidden-xs
 						each link in navLinks
 							li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 						//- BODY
 
+					.mobile-nav.visible-xs.glyphicon.glyphicon-menu-hamburger(@click="toggle")
+						ul.dd(:style="{display: (visible ? 'block' : 'none')}")
+							li: a(href="/") Sunflower Events
+							each link in navLinks
+								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+							//- BODY
+
+
 		#body
-			slip-n-slider(:style="{backgroundImage: 'url(' + images[current] + ')' }")
-				a.next.glyphicon-arrow-right(@click="next") &nbsp;
-				a.prev.glyphicon-arrow-left(@click="prev") &nbsp;
+			slip-n-slider(:style="{backgroundImage: 'url(' + images[current] + ')' }" @mouseover="pause" @mouseout="play")
+				a.next.glyphicon.glyphicon-arrow-right(@click="next")
+				a.prev.glyphicon.glyphicon-arrow-left(@click="prev")
+				.dots(:style="{width: ((images.length * 21) + 10) + 'px', marginLeft: '-' + (((images.length * 21) + 10)/2 ) + 'px'}")
+
+					a.dot( v-for="(imgLink, index) in images" v-bind:class="{active: (index === current)}" @click="current = index")
 			.container
 				.inner
 
@@ -101,7 +112,7 @@ html
 		block js
 
 		script.
-			new Vue({
+			var slider = new Vue({
 				el: 'slip-n-slider',
 				data: {
 					images: [
@@ -148,3 +159,15 @@ html
 				}
 			});
 
+			var mNav = new Vue({
+				el: '.mobile-nav',
+				data: {
+					visible: false
+				},
+				methods: {
+					toggle: function() {
+						this.visible = !this.visible;
+					}
+				}
+
+			});

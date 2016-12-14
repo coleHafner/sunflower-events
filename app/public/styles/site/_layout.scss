@@ -6,6 +6,7 @@
 }
 
 #header {
+	position: relative;
 	margin-top: 60px;
 
 	a {
@@ -21,6 +22,49 @@
 
 		&:hover {
 			text-decoration: none;
+		}
+	}
+
+	.mobile-nav {
+		position: absolute;
+		top: 10px;
+		font-size: 35px;
+		z-index: 1;
+
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		ul.dd {
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background-color: rgba(255,255,255,.85);
+			display: none;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+
+
+			li {
+				padding: 45px;
+				text-align: center;
+				margin-top: 5px;
+				line-height: 0px;
+				font-family: 'Watermelon Script';
+				font-size: 40px;
+
+				&:first-child {
+					padding-top: 84px;
+
+					a {
+						color: $secondary;
+					}
+				}
+			}
 		}
 	}
 }
@@ -76,4 +120,25 @@ body {
 	left: 0;
 	right: 0;
 	background-color: #ffee00;
+}
+
+@media (max-width: $screen-xs-max) {
+	#header {
+		a {
+			display: block;
+			width: 100%;
+
+			h1 {
+				text-align: center;
+				font-size: 25px;
+			}
+		}
+		.mobile-nav {
+			ul.dd {
+				li {
+					font-size: 25px;
+				}
+			}
+		}
+	}
 }
