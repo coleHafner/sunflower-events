@@ -5828,8 +5828,14 @@ button.close {
   font-style: normal; }
 
 #header {
-  position: relative;
-  margin-top: 60px; }
+  position: relative; }
+  #header ul li a {
+    color: #666; }
+  #header ul li:hover a {
+    color: #000; }
+  #header ul li.active a {
+    color: #000;
+    font-weight: bold; }
   #header a {
     float: left;
     color: #000; }
@@ -5842,18 +5848,23 @@ button.close {
       text-decoration: none; }
   #header .mobile-nav {
     position: absolute;
-    top: 10px;
     font-size: 35px;
     z-index: 1; }
     #header .mobile-nav:hover {
       cursor: pointer; }
+    #header .mobile-nav .close-icon {
+      position: fixed;
+      top: 17px;
+      right: 17px;
+      font-size: 25px;
+      font-weight: normal; }
     #header .mobile-nav ul.dd {
       position: fixed;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.97);
       display: none;
       list-style: none;
       padding: 0;
@@ -5869,6 +5880,10 @@ button.close {
           padding-top: 84px; }
           #header .mobile-nav ul.dd li:first-child a {
             color: #583926; }
+
+#body hr {
+  margin-top: 5px;
+  margin-bottom: 0; }
 
 #footer {
   margin-top: 30px;
@@ -5887,10 +5902,6 @@ body {
 	background-size: cover;*/
   background-color: #fff; }
 
-.inner {
-  background-color: rgba(255, 255, 255, 0.71);
-  padding: 10px; }
-
 .nav-list {
   float: right;
   list-style: none;
@@ -5907,12 +5918,16 @@ body {
       color: #000; }
 
 .nav-top {
-  position: fixed;
-  top: 0;
+  position: relative;
   height: 50px;
-  left: 0;
-  right: 0;
-  background-color: #ffee00; }
+  background-color: #ffee00;
+  margin-bottom: 15px; }
+
+@media (min-width: 522px) and (max-width: 767px) {
+  #header a h1 {
+    font-size: 35px !important; }
+  #header .mobile-nav.glyphicon.glyphicon-menu-hamburger {
+    font-size: 35px !important; } }
 
 @media (max-width: 767px) {
   #header a {
@@ -5921,8 +5936,10 @@ body {
     #header a h1 {
       text-align: center;
       font-size: 25px; }
-  #header .mobile-nav ul.dd li {
-    font-size: 25px; } }
+  #header .mobile-nav.glyphicon.glyphicon-menu-hamburger {
+    font-size: 25px; }
+    #header .mobile-nav.glyphicon.glyphicon-menu-hamburger ul.dd li {
+      font-size: 25px; } }
 
 slip-n-slider {
   position: relative;

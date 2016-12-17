@@ -7,7 +7,25 @@
 
 #header {
 	position: relative;
-	margin-top: 60px;
+
+	ul li {
+		a {
+			color: #666;
+		}
+
+		&:hover {
+			a {
+				color: #000;
+			}
+		}
+
+		&.active {
+			a {
+				color: #000;
+				font-weight: bold;
+			}
+		}
+	}
 
 	a {
 		float: left;
@@ -27,13 +45,19 @@
 
 	.mobile-nav {
 		position: absolute;
-		top: 10px;
 		font-size: 35px;
 		z-index: 1;
 
-
 		&:hover {
 			cursor: pointer;
+		}
+
+		.close-icon {
+			position: fixed;
+			top: 17px;
+			right: 17px;
+			font-size: 25px;
+			font-weight: normal;
 		}
 
 		ul.dd {
@@ -42,7 +66,7 @@
 			right: 0;
 			bottom: 0;
 			left: 0;
-			background-color: rgba(255,255,255,.85);
+			background-color: rgba(255,255,255,.97);
 			display: none;
 			list-style: none;
 			padding: 0;
@@ -69,6 +93,13 @@
 	}
 }
 
+#body {
+	hr {
+		margin-top: 5px;
+		margin-bottom: 0;
+	}
+}
+
 #footer {
 	margin-top: 30px;
 	border-top: 1px solid #eeeeee;
@@ -87,11 +118,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;*/
 	background-color: #fff;
-}
-
-.inner {
-	background-color: rgba(255, 255, 255, .71);
-	padding: 10px;
 }
 
 .nav-list {
@@ -114,12 +140,24 @@ body {
 }
 
 .nav-top {
-	position: fixed;
-	top: 0;
+	position: relative;
 	height: 50px;
-	left: 0;
-	right: 0;
 	background-color: #ffee00;
+	margin-bottom: 15px;
+}
+
+@media (min-width: 522px) and (max-width: $screen-xs-max) {
+	#header {
+		a {
+			h1 {
+				font-size: 35px !important;
+			}
+		}
+
+		.mobile-nav.glyphicon.glyphicon-menu-hamburger {
+			font-size: 35px !important;
+		}
+	}
 }
 
 @media (max-width: $screen-xs-max) {
@@ -133,11 +171,12 @@ body {
 				font-size: 25px;
 			}
 		}
-		.mobile-nav {
-			ul.dd {
-				li {
-					font-size: 25px;
-				}
+
+		.mobile-nav.glyphicon.glyphicon-menu-hamburger {
+			font-size: 25px;
+
+			ul.dd li {
+				font-size: 25px;
 			}
 		}
 	}

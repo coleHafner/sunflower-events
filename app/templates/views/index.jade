@@ -1,4 +1,58 @@
 extends ../layouts/default
 
-block content
-	.container
+block banner
+	slip-n-slider(:style="{backgroundImage: 'url(' + images[current] + ')' }" @mouseover="pause" @mouseout="play")
+		a.next.glyphicon.glyphicon-arrow-right(@click="next")
+		a.prev.glyphicon.glyphicon-arrow-left(@click="prev")
+		.dots(:style="{width: ((images.length * 21) + 10) + 'px', marginLeft: '-' + (((images.length * 21) + 10)/2 ) + 'px'}")
+
+			a.dot( v-for="(imgLink, index) in images" v-bind:class="{active: (index === current)}" @click="current = index")
+
+
+	script.
+		var slider = new Vue({
+			el: 'slip-n-slider',
+			data: {
+				images: [
+					'http://media.npr.org/assets/img/2016/08/05/180749660_03d05e1a95_b-21e2b03e8a44b23394e4192030a9a0710c58bcf7-s900-c85.jpg',
+					'https://s-media-cache-ak0.pinimg.com/564x/55/78/76/557876217406c6fd97e7bf43d7eb4f71.jpg',
+					'http://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/chocolate-avocado-cake.jpg?itok=E2eWE_Dx'
+				],
+				current: 0,
+				timer: null
+
+			},
+			created: function () {
+				this.play();
+
+			},
+			methods: {
+				play: function () {
+					if (this.timer !== null) return;
+					this.timer = setInterval(this.next, 3000);
+				},
+				pause: function () {
+					clearTimeout(this.timer);
+					this.timer = null;
+
+				},
+				next: function () {
+					if (this.current === (this.images.length - 1)) {
+						this.current = 0;
+						return;
+					}
+
+					this.current++;
+
+
+				},
+				prev: function () {
+					if (this.current === 0) {
+						this.current = (this.images.length - 1);
+						return;
+					}
+
+					this.current--;
+				}
+			}
+		});
